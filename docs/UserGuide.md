@@ -1,10 +1,10 @@
-# SHOCO v2.0 - User Guide
+# SHOCO v2.1 - User Guide
 <!-- @@author Shannonwje -->
 By: `Team SHOCOTech`
 
 Since: `Feb 2020`
 
-Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+Creators: `Trisha Labi` `Tan Kok Joon` `Phoon Jia Juin` `Joshua Loh` `Shannon Wong`
 <!-- @@author -->
 
 <!-- @@author trishaangelica -->
@@ -48,7 +48,7 @@ grocery shopping disappear.
 &nbsp;
 
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
@@ -60,7 +60,7 @@ grocery shopping disappear.
 &nbsp;
 <!-- @@author -->
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ## Features 
 
@@ -83,7 +83,7 @@ grocery shopping disappear.
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author jiajuinphoon -->
@@ -93,7 +93,7 @@ Adds an item to the shopping list.
 Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
 * The `DESCRIPTION` must exist.
-* The `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
+* The `[QUANTITY]` must be a **positive whole number**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
   respective values or omit them. The system will set the price and quantity to 
@@ -115,7 +115,7 @@ Examples of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide"> &#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide"> &#129053; back to top</a></b>
 <!-- @@author trishaangelica -->
 
 ***
@@ -128,7 +128,10 @@ Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list. 
 * You can view an item's `INDEX` number by using the `DISPLAY` command. More info [here](#displaying-list-and-budget-details-display).
-* The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
+* The `INDEX` and `[QUANTITY]` must be a **positive whole number**. *e.g 1, 2, 3 ..*
+* The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * **At least one** of the three parameters (description/price/quantity) must be present in the command.
 > :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
@@ -147,7 +150,7 @@ Examples of usage:
     
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -157,8 +160,10 @@ Removes an item from the list at the specified index.
 
 Format: `DEL INDEX`
 
-* The `INDEX` should be an integer.
-* The `INDEX` should not be out of bounds of the shopping list.  
+* The `INDEX` should be a **positive whole number**.
+* The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 
 Example of usage: 
 
@@ -166,7 +171,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -175,7 +180,7 @@ Filters the shopping list according to a keyword specified by the user.
 
 Format: `FIND KEYWORD`
 
-* The `KEYWORD` can be any character or string.
+* The `KEYWORD` can be any word or phrase.
 * The `KEYWORD` field should not be left empty.  
 
 Example of usage: 
@@ -184,22 +189,22 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author Shannonwje -->
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
-When first added initially, the item will have the status `[0]` 
-to indicate that it is unmarked. After marking the item as bought, 
+When first added initially, the item will have the status `[X]` 
+to indicate that it is un-marked. After marking the item as bought, 
 the status of item becomes `[B]`.
 
 Format: `MARK INDEX`
 
-* The `INDEX` should be a number.
+* The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
-  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
-* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 * Marking an item whose status was previously `[B]` will be successful, assuring the success of the mark command executed.
 
 Example of the usage: 
@@ -210,33 +215,33 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
 ### Un-marking a marked item: `UNMARK`
 Un-marks a marked-as-bought item from the list at the specified index.
 After being marked as bought, the item will have the status `[B]`
-to indicate that it is marked as bought. After unmarking the marked-as-bought
-item, the status of the item becomes `[0]`.
+to indicate that it is marked as bought. After un-marking the marked-as-bought
+item, the status of the item becomes `[X]`.
 
 Format: `UNMARK INDEX`
 
-* The `INDEX` should be an number.
+* The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
-  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
-* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
-* Unmarking an item whose status was previously `[0]` will be successful, assuring the success of the unmark command executed.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+* Un-marking an item whose status was previously `[X]` will be successful, assuring the success of the un-mark command executed.
 
 Example of the usage:
 
 1. `UNMARK 3`
-   * This unmarks the 3rd item in your list as unbought.
-   * The status of the 3rd item is now `[0]`
+   * This marks the 3rd item in your list as not bought yet.
+   * The status of the 3rd item is now `[X]`
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author JLoh579 -->
@@ -247,7 +252,7 @@ Format: `DISPLAY`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -258,7 +263,7 @@ Sets a budget for the user.
 Format: `SET b/AMOUNT`
 
 * The `AMOUNT` can be any decimal number that is between 0 to 5000.
-* The `b/` substring should be present in the command.  
+* The `b/` phrase should be present in the command.  
 
 Example of usage: 
 
@@ -266,7 +271,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author Shannonwje -->
@@ -277,7 +282,7 @@ Format: `RES`
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author JLoh579 -->
@@ -285,22 +290,22 @@ Format: `RES`
 Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
 
 Format: `CLEAR`
-
+<!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
-<!-- @@author -->
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
+
 ***
 <!-- @@author trishaangelica -->
 
 ### Viewing help: `HELP`
-Shows the available commands and how they are to be used.
+Shows the available commands, their purpose and how they are to be used.
 
 Format: `HELP`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -311,7 +316,7 @@ Format: `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -336,7 +341,7 @@ your budget.
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -360,7 +365,7 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -385,4 +390,4 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
